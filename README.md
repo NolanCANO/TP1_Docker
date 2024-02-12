@@ -51,3 +51,5 @@
 ## e. Supprimer le conteneur précédent et arriver au même résultat que précédemment à l’aide de la commande docker cp 
 
 ![alt text](image-10.png)
+
+![alt text](image-11.png)
