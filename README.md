@@ -93,3 +93,15 @@
 
 - Si vous devez modifier index.html, vous devez reconstruire et redéployer l'image Docker.
 - Si vous avez plusieurs images avec différents index.html, chacune utilise de l'espace disque supplémentaire pour stocker essentiellement le même contenu de base de l'image Nginx avec seulement de petites variations.
+
+# 7. Utiliser une base de données dans un conteneur docker
+
+## a. Récupérer les images mysql:5.7 et phpmyadmin depuis le Docker Hub
+
+![alt text](image-15.png)
+
+## b. Exécuter deux conteneurs à partir des images et ajouter une table ainsi que quelques enregistrements dans la base de données à l’aide de phpmyadmin
+
+![alt text](image-16.png)
+
+![alt text](image-17.png)
