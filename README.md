@@ -4,27 +4,27 @@
 	
 ## Hello World avec Docker:
 
-![alt text](image.png)
+![alt text](images/image.png)
 
 ## Créer un conteneur Ubuntu et utiliser Bash:
 
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 
 ## Afficher les images Docker locales :
 
-![alt text](image-2.png)
+![alt text](images/image-2.png)
 
 ## Afficher tous les conteneurs (actifs ou non) :
 
-![alt text](image-3.png)
+![alt text](images/image-3.png)
 
 ## Démarrer un serveur web Nginx :
 
-![alt text](image-4.png)
+![alt text](images/image-4.png)
 
 ## Pour l'exécuter en arrière-plan, ajoutez -d :
 
-![alt text](image-5.png)
+![alt text](images/image-5.png)
 
 
 # 4. Début du TP
@@ -36,40 +36,40 @@
 
 ## a. Récupérer l’image sur le Docker Hub :
 
-![alt text](image-6.png)
+![alt text](images/image-6.png)
 
 ## b. Vérifier que cette image est présente en local :
 
-![alt text](image-7.png)
+![alt text](images/image-7.png)
 
 ## c. Créer un fichier index.html simple :
 
-![alt text](image-8.png)
+![alt text](images/image-8.png)
 
 ## d. Démarrer un conteneur et servir la page html créée précédemment à l’aide d’un volume (option -v de docker run) :
 
-![alt text](image-9.png)
+![alt text](images/image-9.png)
 
 ## e. Supprimer le conteneur précédent et arriver au même résultat que précédemment à l’aide de la commande docker cp 
 
-![alt text](image-10.png)
+![alt text](images/image-10.png)
 
-![alt text](image-11.png)
+![alt text](images/image-11.png)
 
 
 # 6. Builder une image 
 
 ## a. A l’aide d’un Dockerfile, créer une image (commande docker build) 
 
-![alt text](image-12.png)
+![alt text](images/image-12.png)
 
 ### Dockerfile :
 
-![alt text](image-13.png)
+![alt text](images/image-13.png)
 
 ## b. Exécuter cette nouvelle image de manière à servir la page html (commande docker run)
 
-![alt text](image-14.png)
+![alt text](images/image-14.png)
 
 ## c. Quelles différences observez-vous entre les procédures 5. et 6. ? Avantages et inconvénients de l’une et de l’autre méthode ?
 
@@ -104,18 +104,18 @@
 
 ## a. Récupérer les images mysql:5.7 et phpmyadmin depuis le Docker Hub
 
-![alt text](image-15.png)
+![alt text](images/image-15.png)
 
 ## b. Exécuter deux conteneurs à partir des images et ajouter une table ainsi que quelques enregistrements dans la base de données à l’aide de phpmyadmin
 
-![alt text](image-16.png)
+![alt text](images/image-16.png)
 
-![alt text](image-17.png)
+![alt text](images/image-17.png)
 
 
 # 8. Faire la même chose que précédemment en utilisant un fichier
 
-![alt text](image-18.png)
+![alt text](images/image-18.png)
 
 ## a. Qu’apporte le fichier docker-compose par rapport aux commandes docker run ? Pourquoi est-il intéressant ?
 
@@ -125,7 +125,7 @@
 
 ## b. Configuration du conteneur MySQL au lancement :
 
-![alt text](image-19.png)
+![alt text](images/image-19.png)
 
 Le fichier docker-compose.yml permet de définir facilement des variables d'environnement pour la configuration initiale du conteneur MySQL, telles que le mot de passe root, un premier utilisateur, un mot de passe pour cet utilisateur et une base de données initiale (MYSQL_DATABASE).
 
@@ -134,29 +134,29 @@ Le fichier docker-compose.yml permet de définir facilement des variables d'envi
 
 ## a. A l’aide de docker-compose et de l’image praqma/network-multitool disponible sur le Docker Hub créer 3 services (web, app et db) et 2 réseaux (frontend et backend).
 
-![alt text](image-20.png)
+![alt text](images/image-20.png)
 
 Le service web est seulement sur le réseau frontend, tandis que le service db est seulement sur le réseau backend. Le service app sert de pont car il est sur les deux réseaux. Cela signifie que web et db ne peuvent pas communiquer directement entre eux car ils n'ont aucun réseau en commun.
 
 ## b. Quelles lignes du résultat de la commande docker inspect justifient ce comportement ?
 
-![alt text](image-21.png)
+![alt text](images/image-21.png)
 
 On va maintenant utiliser la commande "sudo docker inspect <name_container>" pour voir la configuration Network des 3 conteneurs:
 
-![alt text](image-22.png)
+![alt text](images/image-22.png)
 
 - La sortie montre que le conteneur est connecté au réseau tp1_docker_backend.
 - L'alias dans ce réseau est db.
 - Cela correspond au conteneur de base de données (db).
 
-![alt text](image-23.png)
+![alt text](images/image-23.png)
 
 - Ce conteneur est connecté au réseau tp1_docker_frontend.
 - L'alias dans ce réseau est web.
 - Cela correspond au conteneur de service web (web).
 
-![alt text](image-24.png)
+![alt text](images/image-24.png)
 
 - Ce conteneur est connecté à deux réseaux : tp1_docker_backend et tp1_docker_frontend.
 - L'alias dans ces réseaux est app.
