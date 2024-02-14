@@ -105,3 +105,19 @@
 ![alt text](image-16.png)
 
 ![alt text](image-17.png)
+
+# 8. Faire la même chose que précédemment en utilisant un fichier
+
+![alt text](image-18.png)
+
+## a. Qu’apporte le fichier docker-compose par rapport aux commandes docker run ? Pourquoi est-il intéressant ?
+
+- Le fichier docker-compose.yml permet de configurer votre application en une seule fois plutôt que de lancer chaque conteneur séparément avec des commandes docker run.
+- Tous les paramètres de configuration sont stockés dans un fichier, ce qui rend la gestion des paramètres plus organisée et lisible.
+- Docker Compose permet de démarrer, d'arrêter et de reconstruire les services avec une seule commande.
+
+## b. Configuration du conteneur MySQL au lancement :
+
+![alt text](image-19.png)
+
+### Le fichier docker-compose.yml permet de définir facilement des variables d'environnement pour la configuration initiale du conteneur MySQL, telles que le mot de passe root, un premier utilisateur, un mot de passe pour cet utilisateur et une base de données initiale (MYSQL_DATABASE).
