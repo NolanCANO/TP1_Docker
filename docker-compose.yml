@@ -1,32 +1,56 @@
-version: '3.1'
+# version: '3.1'
+
+# services:
+#   db:
+#     image: mysql:5.7
+#     container_name: test-mysql
+#     restart: always
+#     environment:
+#       MYSQL_ROOT_PASSWORD: toor
+#       MYSQL_DATABASE: mydb
+#       MYSQL_USER: user
+#       MYSQL_PASSWORD: password
+#     ports:
+#       - "3306:3306"
+#     volumes:
+#       - my-db:/var/lib/mysql
+
+#   phpmyadmin:
+#     image: phpmyadmin/phpmyadmin
+#     container_name: test-phpmyadmin
+#     restart: always
+#     depends_on:
+#       - db
+#     environment:
+#       PMA_HOST: db
+#       PMA_USER: root
+#       PMA_PASSWORD: toor
+#     ports:
+#       - "8080:80"
+
+# volumes:
+#   my-db:
+
+
+version: '3.7'
 
 services:
+  web:
+    image: praqma/network-multitool
+    networks:
+      - frontend
+
+  app:
+    image: praqma/network-multitool
+    networks:
+      - frontend
+      - backend
+
   db:
-    image: mysql:5.7
-    container_name: test-mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: toor
-      MYSQL_DATABASE: mydb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-    ports:
-      - "3306:3306"
-    volumes:
-      - my-db:/var/lib/mysql
+    image: praqma/network-multitool
+    networks:
+      - backend
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: test-phpmyadmin
-    restart: always
-    depends_on:
-      - db
-    environment:
-      PMA_HOST: db
-      PMA_USER: root
-      PMA_PASSWORD: toor
-    ports:
-      - "8080:80"
-
-volumes:
-  my-db:
+networks:
+  frontend:
+  backend:
