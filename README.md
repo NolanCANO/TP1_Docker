@@ -26,9 +26,11 @@
 
 ![alt text](image-5.png)
 
+
 # 4. Début du TP
 
 ### J’ai initialiser un nouveau repository Git appeler TP1_Docker
+
 
 # 5. Exécuter un serveur web dans un conteneur Docker
 
@@ -54,6 +56,7 @@
 
 ![alt text](image-11.png)
 
+
 # 6. Builder une image 
 
 ## a. A l’aide d’un Dockerfile, créer une image (commande docker build) 
@@ -70,6 +73,7 @@
 
 ## c. Quelles différences observez-vous entre les procédures 5. et 6. ? Avantages et inconvénients de l’une et de l’autre méthode ?
 
+
 ### Procédures 5 :
 
 ### Avantages:
@@ -81,6 +85,7 @@
 
 - Pour exécuter le conteneur ailleurs, vous avez besoin de configurer le volume et vous assurer que le fichier index.html est présent sur l'hôte.
 - Le conteneur dépend des fichiers de l'hôte, ce qui peut poser des problèmes de compatibilité ou de permissions entre différents environnements d'hébergement.
+
 
 ### Procédures 6:
 
@@ -94,6 +99,7 @@
 - Si vous devez modifier index.html, vous devez reconstruire et redéployer l'image Docker.
 - Si vous avez plusieurs images avec différents index.html, chacune utilise de l'espace disque supplémentaire pour stocker essentiellement le même contenu de base de l'image Nginx avec seulement de petites variations.
 
+
 # 7. Utiliser une base de données dans un conteneur docker
 
 ## a. Récupérer les images mysql:5.7 et phpmyadmin depuis le Docker Hub
@@ -105,6 +111,7 @@
 ![alt text](image-16.png)
 
 ![alt text](image-17.png)
+
 
 # 8. Faire la même chose que précédemment en utilisant un fichier
 
@@ -121,3 +128,44 @@
 ![alt text](image-19.png)
 
 Le fichier docker-compose.yml permet de définir facilement des variables d'environnement pour la configuration initiale du conteneur MySQL, telles que le mot de passe root, un premier utilisateur, un mot de passe pour cet utilisateur et une base de données initiale (MYSQL_DATABASE).
+
+
+# 9. Observation de l’isolation réseau entre 3 conteneurs
+
+## a. A l’aide de docker-compose et de l’image praqma/network-multitool disponible sur le Docker Hub créer 3 services (web, app et db) et 2 réseaux (frontend et backend).
+
+![alt text](image-20.png)
+
+Le service web est seulement sur le réseau frontend, tandis que le service db est seulement sur le réseau backend. Le service app sert de pont car il est sur les deux réseaux. Cela signifie que web et db ne peuvent pas communiquer directement entre eux car ils n'ont aucun réseau en commun.
+
+## b. Quelles lignes du résultat de la commande docker inspect justifient ce comportement ?
+
+![alt text](image-21.png)
+
+On va maintenant utiliser la commande "sudo docker inspect <name_container>" pour voir la configuration Network des 3 conteneurs:
+
+![alt text](image-22.png)
+
+- La sortie montre que le conteneur est connecté au réseau tp1_docker_backend.
+- L'alias dans ce réseau est db.
+- Cela correspond au conteneur de base de données (db).
+
+![alt text](image-23.png)
+
+- Ce conteneur est connecté au réseau tp1_docker_frontend.
+- L'alias dans ce réseau est web.
+- Cela correspond au conteneur de service web (web).
+
+![alt text](image-24.png)
+
+- Ce conteneur est connecté à deux réseaux : tp1_docker_backend et tp1_docker_frontend.
+- L'alias dans ces réseaux est app.
+- Cela correspond au conteneur d'application intermédiaire (app) qui est capable de communiquer avec les deux services web et db.
+
+## c. Dans quelle situation réelles (avec quelles images) pourrait-on avoir cette configuration réseau ? Dans quel but ?
+
+L'objectif principal de cette configuration est de renforcer la sécurité en limitant l'exposition des services sensibles (comme la base de données) uniquement aux services internes (comme l'application) et en évitant leur exposition directe au monde extérieur. Cela crée une couche supplémentaire de sécurité.
+
+---
+
+*by Nolan*
